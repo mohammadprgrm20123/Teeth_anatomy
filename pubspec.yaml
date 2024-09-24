@@ -3,7 +3,7 @@ description: teeth_anatomy shows the anatomy of the tooth and is a good package 
 
 repository: "https://github.com/mohammadprgrm20123/Teeth_anatomy"
 
-version: 0.0.1
+version: 0.0.2
 
 environment:
   sdk: '>=3.2.1 <4.0.0'
