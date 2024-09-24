@@ -4,13 +4,6 @@ Dental anatomy display package
 
 ## Installation
 
-https://github.com/user-attachments/assets/e7265a1a-0ce9-4acd-9fa8-c610df3760d3
-https://github.com/user-attachments/assets/eff90594-028f-4879-9199-7d6cbf7a6c69
-https://github.com/user-attachments/assets/6ae53d50-ea29-47d8-85cc-aa7249993c52
-
-
-llation
-
 In the `dependencies:` section of your `pubspec.yaml`, add the following line:
 
 ```yaml
@@ -55,10 +48,30 @@ class MyApp extends Stateless {
 
 }
 
-
-
-
-
 ```
+
+
+
+https://github.com/user-attachments/assets/24f580ee-b180-4f2f-bea7-3bf3b495fb6e
+
+
+
+
+
+
+
+
+
+https://github.com/user-attachments/assets/dd396142-7520-4c33-b6fb-1da2b2b06c97
+
+
+
+
+
+
+
+
+https://github.com/user-attachments/assets/32f4fd58-74c1-42a1-82a6-c90fe309752a
+
 
 
