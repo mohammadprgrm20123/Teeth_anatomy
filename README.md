@@ -2,7 +2,7 @@
 
 Dental anatomy display package
 
-## Insta
+## Installation
 
 https://github.com/user-attachments/assets/e7265a1a-0ce9-4acd-9fa8-c610df3760d3
 https://github.com/user-attachments/assets/eff90594-028f-4879-9199-7d6cbf7a6c69
