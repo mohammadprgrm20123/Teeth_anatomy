@@ -53,8 +53,6 @@ class MyApp extends Stateless {
 
 
 https://github.com/user-attachments/assets/24f580ee-b180-4f2f-bea7-3bf3b495fb6e
-https://github.com/user-attachments/assets/0c7dd567-0198-443b-90f0-46822caf38d5
-https://github.com/user-attachments/assets/2dc66d18-8554-4ca7-a88d-cb99ff476418
 
 
 
