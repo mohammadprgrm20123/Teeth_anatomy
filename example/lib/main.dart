@@ -34,6 +34,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  double strokeTooth =0;
+
   List<TeethModel> tooth = [];
   List<TeethModel> tooth1 = [];
   List<TeethModel> tooth2 = [];
@@ -46,24 +49,127 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Row(
+      body: PageView(
         children: [
-          Expanded(
-            child: TeethWidget(
-              borderWith: 1,
+          firstPage(),
+          TeethWidget(
+            borderWith: 1,
+            size: 600,
+            textPaddingLeft: -10,
+            textPaddingTop: 1,
+            selectedColor: Colors.purpleAccent,
+            unSelectedColor: Colors.white,
+            borderColor: Colors.green,
+            showIndex: true,
+            textStyle: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12),
+            onTap: (String id, selected) {
+              if (selected) {
+                tooth1.add(TeethModel(
+                    id: id,
+                    selectedColor: Colors.purpleAccent));
+              } else {
+                tooth1.removeWhere((r) => r.id == id);
+              }
+
+              setState(() {});
+            },
+            teeth: tooth1,
+          ),
+          TeethWidget(
+            borderWith: 1,
+            size: 800,
+            textPaddingLeft: -10,
+            textPaddingTop: 1,
+            selectedColor: Colors.purpleAccent,
+            unSelectedColor: Colors.white,
+            borderColor: Colors.green,
+            showIndex: true,
+            textStyle: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
+            onTap: (String id, selected) {
+              if (selected) {
+                tooth2.add(TeethModel(
+                    id: id,
+                    selectedColor: Colors.green,char: 'OK'));
+              } else {
+                tooth2.removeWhere((r) => r.id == id);
+              }
+
+              setState(() {});
+            },
+            teeth: tooth2,
+          ),
+          TeethWidget(
+            borderWith: 1,
+            size: 300,
+            textPaddingLeft: -10,
+            textPaddingTop: 1,
+            selectedColor: Colors.purpleAccent,
+            unSelectedColor: Colors.white,
+            borderColor: Colors.green,
+            textStyle: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12),
+            onTap: (String id, selected) {
+              if (selected) {
+                tooth3.add(TeethModel(
+                    id: id,
+                    selectedColor: Colors.primaries[Random().nextInt(16)]));
+              } else {
+                tooth3.removeWhere((r) => r.id == id);
+              }
+
+              setState(() {});
+            },
+            teeth: tooth3,
+          ),
+          TeethWidget(
+            borderWith: 3,
+            size: 800,
+            textPaddingLeft: -10,
+            textPaddingTop: 1,
+            selectedColor: Colors.purpleAccent,
+            unSelectedColor: Colors.white,
+            borderColor: Colors.black,
+            textStyle: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12),
+            onTap: (String id, selected) {
+              if (selected) {
+                tooth3.add(TeethModel(
+                    id: id,
+                    selectedColor: Colors.redAccent));
+              } else {
+                tooth3.removeWhere((r) => r.id == id);
+              }
+
+              setState(() {});
+            },
+            teeth: tooth3,
+          ),
+        ],
+
+      ),
+    );
+  }
+
+  Column firstPage() {
+    return Column(
+          children: [
+            TeethWidget(
+              borderWith: strokeTooth,
               size: 500,
               textPaddingLeft: -10,
               textPaddingTop: 1,
               selectedColor: Colors.purpleAccent,
               unSelectedColor: Colors.white,
-              borderColor: Colors.green,
+              borderColor: Colors.black54,
               textStyle: const TextStyle(
                   color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12),
               onTap: (String id, selected) {
                 if (selected) {
                   tooth.add(TeethModel(
                       id: id,
-                      selectedColor: Colors.primaries[Random().nextInt(16)]));
+                      selectedColor: Colors.primaries[Random().nextInt(6)]));
                 } else {
                   tooth.removeWhere((r) => r.id == id);
                 }
@@ -72,112 +178,18 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               teeth: tooth,
             ),
-          ),
-          Expanded(
-            child: TeethWidget(
-              borderWith: 1,
-              size: 600,
-              textPaddingLeft: -10,
-              textPaddingTop: 1,
-              selectedColor: Colors.purpleAccent,
-              unSelectedColor: Colors.white,
-              borderColor: Colors.green,
-              showIndex: true,
-              textStyle: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12),
-              onTap: (String id, selected) {
-                if (selected) {
-                  tooth1.add(TeethModel(
-                      id: id,
-                      selectedColor: Colors.purpleAccent));
-                } else {
-                  tooth1.removeWhere((r) => r.id == id);
-                }
+            Slider(
+              min: 0,
+                max: 10,
+              onChanged: (v){
 
-                setState(() {});
-              },
-              teeth: tooth1,
-            ),
-          ),
-          Expanded(
-            child: TeethWidget(
-              borderWith: 1,
-              size: 800,
-              textPaddingLeft: -10,
-              textPaddingTop: 1,
-              selectedColor: Colors.purpleAccent,
-              unSelectedColor: Colors.white,
-              borderColor: Colors.green,
-              showIndex: true,
-              textStyle: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
-              onTap: (String id, selected) {
-                if (selected) {
-                  tooth2.add(TeethModel(
-                      id: id,
-                      selectedColor: Colors.green,char: 'OK'));
-                } else {
-                  tooth2.removeWhere((r) => r.id == id);
-                }
+              strokeTooth = v;
+              setState(() {});
 
-                setState(() {});
-              },
-              teeth: tooth2,
-            ),
-          ),
-          Expanded(
-            child: TeethWidget(
-              borderWith: 1,
-              size: 300,
-              textPaddingLeft: -10,
-              textPaddingTop: 1,
-              selectedColor: Colors.purpleAccent,
-              unSelectedColor: Colors.white,
-              borderColor: Colors.green,
-              textStyle: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12),
-              onTap: (String id, selected) {
-                if (selected) {
-                  tooth3.add(TeethModel(
-                      id: id,
-                      selectedColor: Colors.primaries[Random().nextInt(16)]));
-                } else {
-                  tooth3.removeWhere((r) => r.id == id);
-                }
+            }, value: strokeTooth,),
 
-                setState(() {});
-              },
-              teeth: tooth3,
-            ),
-          ),
-          Expanded(
-            child: TeethWidget(
-              borderWith: 3,
-              size: 800,
-              textPaddingLeft: -10,
-              textPaddingTop: 1,
-              selectedColor: Colors.purpleAccent,
-              unSelectedColor: Colors.white,
-              borderColor: Colors.black,
-              textStyle: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12),
-              onTap: (String id, selected) {
-                if (selected) {
-                  tooth3.add(TeethModel(
-                      id: id,
-                      selectedColor: Colors.redAccent));
-                } else {
-                  tooth3.removeWhere((r) => r.id == id);
-                }
 
-                setState(() {});
-              },
-              teeth: tooth3,
-            ),
-          ),
-        ],
-
-      ),
-    );
+          ],
+        );
   }
 }

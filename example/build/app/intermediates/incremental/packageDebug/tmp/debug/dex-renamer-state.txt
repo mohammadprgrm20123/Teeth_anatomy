@@ -1,8 +1,8 @@
-#Tue Sep 24 12:18:56 IRST 2024
-base.0=C\:\\Users\\ArmanPC\\StudioProjects\\teeth_anatomy\\example\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\ArmanPC\\StudioProjects\\teeth_anatomy\\example\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\ArmanPC\\StudioProjects\\teeth_anatomy\\example\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
-base.3=C\:\\Users\\ArmanPC\\StudioProjects\\teeth_anatomy\\example\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
+#Tue Sep 24 20:16:11 IRST 2024
+base.0=C\:\\Users\\pc\\Teeth_anatomy\\example\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\pc\\Teeth_anatomy\\example\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\pc\\Teeth_anatomy\\example\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.3=C\:\\Users\\pc\\Teeth_anatomy\\example\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=1/classes.dex

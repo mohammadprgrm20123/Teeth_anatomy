@@ -1,5 +1,6 @@
 name: teeth_anatomy
-description: "A new Flutter project."
+description: teeth_anatomy shows the anatomy of the tooth and is a good package for use in medical software
+
 repository: "https://github.com/mohammadprgrm20123/Teeth_anatomy"
 
 version: 0.0.1
