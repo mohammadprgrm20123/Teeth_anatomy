@@ -28,10 +28,10 @@ class SvgLoader {
   }
 
   Future<void> loadDrawable(
-      ValueNotifier<Drawable?> notifier,
+      final ValueNotifier<Drawable?> notifier,
       ) async {
     final svgBytes = await rootBundle.load(
-      "packages/teeth_anatomy/lib/ss.svg",
+      'packages/teeth_anatomy/lib/ss.svg',
     );
     notifier.value =
     await svg.fromSvgBytes(svgBytes.buffer.asUint8List(), "svg");

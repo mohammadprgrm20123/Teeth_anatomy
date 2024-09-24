@@ -1,6 +1,3 @@
-
-
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -24,7 +21,12 @@ class TeethCustomPaint extends CustomPainter {
   final double? textPaddingTop;
   void Function(String id, bool isSelected) onTap;
 
-  TeethCustomPaint({this.unSelectedColor = Colors.black,
+  TeethCustomPaint({
+    required this.models,
+    required this.context,
+    required this.drawableRoot,
+    required this.onTap,
+    this.unSelectedColor = Colors.black,
     this.selectedColor = Colors.green,
     this.borderColor = Colors.black,
     this.textPaddingTop,
@@ -32,13 +34,10 @@ class TeethCustomPaint extends CustomPainter {
     this.borderWith = 1,
     this.style = const TextStyle(color: Colors.black, fontSize: 10),
     this.showIndex = false,
-    required this.models,
-    required this.context,
-    required this.drawableRoot,
-    required this.onTap});
+  });
 
   @override
-  void paint(Canvas canvas, Size size) {
+  void paint(final Canvas canvas, final Size size) {
     if (size != drawableRoot.viewport.viewBoxRect.size) {
       final double scale = min(
           size.width / drawableRoot.viewport.viewBoxRect.width,
@@ -54,8 +53,8 @@ class TeethCustomPaint extends CustomPainter {
       final fittingMatrix = Matrix4.identity()
         ..translate(shift.dx, shift.dy)
         ..scale(scale);
-      final drawables =
-      drawableRoot.children.where((element) => element.hasDrawableContent);
+      final drawables = drawableRoot.children
+          .where((final element) => element.hasDrawableContent);
 
       final bodyPartsCanvas = TouchyCanvas(context, canvas);
 
@@ -72,12 +71,12 @@ class TeethCustomPaint extends CustomPainter {
   }
 
   void drawPaths({
-    required TouchyCanvas touchyCanvas,
-    required Canvas plainCanvas,
-    required Size size,
+    required final TouchyCanvas touchyCanvas,
+    required final Canvas plainCanvas,
+    required final Size size,
     required final bool showIndex,
-    required Iterable<Drawable> drawables,
-    required Matrix4 fittingMatrix,
+    required final Iterable<Drawable> drawables,
+    required final Matrix4 fittingMatrix,
     final double? textPaddingLeft,
     final double? textPaddingTop,
   }) {
@@ -89,28 +88,22 @@ class TeethCustomPaint extends CustomPainter {
       final path = (element as DrawableShape).path;
 
       final Paint paint = Paint();
-      final isExistInList = models.any((e) {
-        return e.id == id;
-      });
+      final isExistInList = models.any((final e) => e.id == id);
 
       if (isExistInList) {
         paint.color =
-            models
-                .firstWhereOrNull((e) => e.id == id)
-                ?.selectedColor ??
+            models.firstWhereOrNull((final e) => e.id == id)?.selectedColor ??
                 selectedColor;
       } else {
         paint.color =
-            models
-                .firstWhereOrNull((e) => e.id == id)
-                ?.unSelectedColor ??
+            models.firstWhereOrNull((final e) => e.id == id)?.unSelectedColor ??
                 unSelectedColor;
       }
 
       touchyCanvas.drawPath(
-        (element).path.transform(fittingMatrix.storage),
+        element.path.transform(fittingMatrix.storage),
         paint,
-        onTapDown: (_) {
+        onTapDown: (final _) {
           if (isExistInList) {
             onTap.call(id, false);
           } else {
@@ -130,35 +123,33 @@ class TeethCustomPaint extends CustomPainter {
       if (showIndex) {
         drawTextOnPath(
           plainCanvas,
-          models
-              .firstWhereOrNull((e) => e.id == id)?.char ?? id,
+          models.firstWhereOrNull((final e) => e.id == id)?.char ?? id,
           size,
           path,
           textPaddingLeft,
           textPaddingTop,
           textStyle: style,
-          fittingMatrix:fittingMatrix,
-
+          fittingMatrix: fittingMatrix,
         );
       }
     }
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(covariant final CustomPainter oldDelegate) => true;
 }
 
-void drawTextOnPath(Canvas canvas,
-    String text,
-    Size size,
-    Path path,
-    double? textPaddingLeft,
-    double? textPaddingTop, {
-      TextStyle textStyle = const TextStyle(),
-      TextDirection textDirection = TextDirection.ltr, required Matrix4 fittingMatrix,
-    }) {
+void drawTextOnPath(
+  final Canvas canvas,
+  final String text,
+  final Size size,
+  final Path path,
+  final double? textPaddingLeft,
+  final double? textPaddingTop, {
+  required final Matrix4 fittingMatrix,
+  final TextStyle textStyle = const TextStyle(),
+  final TextDirection textDirection = TextDirection.ltr,
+}) {
   if (text.isEmpty) {
     return;
   }
@@ -173,27 +164,21 @@ void drawTextOnPath(Canvas canvas,
 
   canvas.save();
 
-
   textPainter.paint(
       canvas,
       Offset(
-          (path.transform(fittingMatrix.storage)
-              .getBounds()
-              .center
-              .dx+
-              (textPaddingLeft ?? 0)),
-          path.transform(fittingMatrix.storage)
-              .getBounds()
-              .center
-              .dy +
-              (textPaddingTop ??0)));
+          path.transform(fittingMatrix.storage).getBounds().center.dx +
+              (textPaddingLeft ?? 0),
+          path.transform(fittingMatrix.storage).getBounds().center.dy +
+              (textPaddingTop ?? 0)));
   canvas.restore();
 }
 
-TextPainter getTextPainterFor(String text,
-    TextStyle textStyle, {
-      TextDirection textDirection = TextDirection.rtl,
-    }) {
+TextPainter getTextPainterFor(
+  final String text,
+  final TextStyle textStyle, {
+  final TextDirection textDirection = TextDirection.rtl,
+}) {
   final textSpan = TextSpan(text: text, style: textStyle);
   final textPainter = TextPainter(text: textSpan, textDirection: textDirection);
   textPainter.layout();

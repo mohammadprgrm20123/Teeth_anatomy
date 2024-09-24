@@ -16,12 +16,11 @@ class TeethModel {
   });
 
   TeethModel copyWith(final String? id, final Color? selectedColor,
-      final Color? unSelectedColor, final int? stroke) {
-    return TeethModel(
-      selectedColor: selectedColor ?? this.selectedColor,
-      stroke: stroke ?? this.stroke,
-      id: id ?? this.id,
-      unSelectedColor: unSelectedColor ?? this.unSelectedColor,
-    );
-  }
+          final Color? unSelectedColor, final int? stroke) =>
+      TeethModel(
+        selectedColor: selectedColor ?? this.selectedColor,
+        stroke: stroke ?? this.stroke,
+        id: id ?? this.id,
+        unSelectedColor: unSelectedColor ?? this.unSelectedColor,
+      );
 }

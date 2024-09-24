@@ -22,12 +22,12 @@ class TeethWidget extends StatefulWidget {
   final void Function(String id, bool isSelected) onTap;
 
   const TeethWidget(
-      {super.key,
+      {required this.onTap,
+      required this.teeth,
+      super.key,
       this.size = 500,
       this.textPaddingLeft,
       this.textPaddingTop,
-      required this.onTap,
-      required this.teeth,
       this.selectedColor,
       this.textStyle,
       this.borderColor,
@@ -47,9 +47,9 @@ class _TeethWidgetState extends State<TeethWidget> {
   @override
   void initState() {
     models = widget.teeth;
-    WidgetsBinding.instance.addPostFrameCallback((v) async {
+    WidgetsBinding.instance.addPostFrameCallback((final v) async {
       final value =
-          await rootBundle.load("packages/teeth_anatomy/assets/ss.svg");
+          await rootBundle.load('packages/teeth_anatomy/assets/ss.svg');
       drawable = await svg.svg.fromSvgBytes(value.buffer.asUint8List(), 'svg');
       setState(() {});
     });
@@ -57,11 +57,11 @@ class _TeethWidgetState extends State<TeethWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     SvgLoader.instance.loadDrawable(SvgLoader.instance.drawable);
     return ValueListenableBuilder<DrawableRoot?>(
       valueListenable: SvgLoader.instance.drawable,
-      builder: (BuildContext context, DrawableRoot? value, Widget? child) {
+      builder: (final context, final value, final child) {
         if (value == null) {
           return const Center(
             child: CircularProgressIndicator.adaptive(),
@@ -70,25 +70,23 @@ class _TeethWidgetState extends State<TeethWidget> {
 
         return CanvasTouchDetector(
           gesturesToOverride: const [GestureType.onTapDown],
-          builder: (BuildContext context) {
-            return CustomPaint(
-              painter: TeethCustomPaint(
-                  textPaddingLeft: widget.textPaddingLeft,
-                  textPaddingTop: widget.textPaddingTop,
-                  borderWith: widget.borderWith ?? 1,
-                  showIndex: widget.showIndex ?? false,
-                  unSelectedColor: widget.unSelectedColor ?? Colors.white,
-                  selectedColor: widget.selectedColor ?? Colors.green,
-                  borderColor: widget.borderColor ?? Colors.black,
-                  models: models,
-                  drawableRoot: value,
-                  context: context,
-                  style: widget.textStyle ??
-                      const TextStyle(color: Colors.black, fontSize: 10),
-                  onTap: widget.onTap),
-              size: Size(widget.size, widget.size),
-            );
-          },
+          builder: (final context) => CustomPaint(
+            painter: TeethCustomPaint(
+                textPaddingLeft: widget.textPaddingLeft,
+                textPaddingTop: widget.textPaddingTop,
+                borderWith: widget.borderWith ?? 1,
+                showIndex: widget.showIndex ?? false,
+                unSelectedColor: widget.unSelectedColor ?? Colors.white,
+                selectedColor: widget.selectedColor ?? Colors.green,
+                borderColor: widget.borderColor ?? Colors.black,
+                models: models,
+                drawableRoot: value,
+                context: context,
+                style: widget.textStyle ??
+                    const TextStyle(color: Colors.black, fontSize: 10),
+                onTap: widget.onTap),
+            size: Size(widget.size, widget.size),
+          ),
         );
       },
     );
