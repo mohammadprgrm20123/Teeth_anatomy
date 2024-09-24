@@ -5,7 +5,7 @@ repository: "https://github.com/mohammadprgrm20123/Teeth_anatomy"
 version: 0.0.1
 
 environment:
-  sdk: '>=3.4.1 <4.0.0'
+  sdk: '>=3.2.1 <4.0.0'
 
 
 dependencies:
